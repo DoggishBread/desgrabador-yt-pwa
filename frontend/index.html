@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Desgrabador de YouTube</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#007BFF" />
+  <link rel="icon" href="icon-192.png" />
+</head>
+<body>
+  <main class="container">
+    <h1>Desgrabador de YouTube</h1>
+
+    <label for="videoUrl">URL del video:</label>
+    <input
+      type="text"
+      id="videoUrl"
+      placeholder="https://www.youtube.com/watch?v=..."
+    />
+
+    <button id="getSubtitles">Obtener subtítulos</button>
+
+    <div id="progressContainer" style="display:none; margin-top:10px;">
+      <progress id="progressBar" value="0" max="100" style="width:100%; height:16px;"></progress>
+    </div>
+
+    <pre id="subtitleDisplay">Aquí aparecerán los subtítulos...</pre>
+
+    <div class="view-buttons">
+      <button id="viewTimestamped">Ver con timestamps</button>
+      <button id="viewScript">Ver como guión</button>
+    </div>
+
+    <div class="action-buttons" style="margin-top:10px;">
+      <button
+        id="downloadSrt"
+        style="display:none; margin-right:10px;"
+      >
+        Descargar SRT
+      </button>
+      <button
+        id="copyText"
+        style="display:none;"
+      >
+        Copiar texto
+      </button>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+
+  <script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/service-worker.js')
+        .then(reg => {
+          console.log('Service Worker registrado con éxito:', reg.scope);
+        })
+        .catch(err => {
+          console.error('Error al registrar Service Worker:', err);
+        });
+    });
+  }
+  </script>
+</body>
+</html>

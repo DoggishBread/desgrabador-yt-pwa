@@ -7,3 +7,5 @@ google-cloud-storage==2.18.2
 
 yt-dlp>=2024.8.6
 pydub==0.25.1
+
+browser-cookie3
